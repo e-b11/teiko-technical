@@ -1,3 +1,4 @@
+import os
 import sqlite3
 import pandas as pd
 
@@ -7,6 +8,8 @@ csv_file = "cell-count.csv"
 df = pd.read_csv(csv_file)
 
 db_file = "cell-count.db"
+if os.path.exists(db_file):
+    os.remove(db_file)
 conn = sqlite3.connect(db_file)
 conn.execute("PRAGMA foreign_keys = ON")
 cursor = conn.cursor()
